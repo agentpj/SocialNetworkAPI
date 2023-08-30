@@ -15,18 +15,16 @@ const thoughtSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
+      //get: ceatedAtDate => moment (createdAtDate).format('MMM DD, YYYY [at] hh"mm a')
     },
     username: {
       type: String,
       required: true,
     },
     // reactions is an array like replies, of nested documents created with the reactionsSchema
-    reactions: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Reaction',
-      }
-    ],
+    reactions: [ { type: Schema.Types.ObjectId,
+      ref: 'Reaction',
+    }],
   },
   {
     toJSON: {
@@ -37,7 +35,7 @@ const thoughtSchema = new Schema(
 );
 
 // Create a virtual property `reactionCount` that gets the amount of reactions associated with a thought
-thoughtSchemaSchema
+thoughtSchema
   .virtual('reactionCount')
   // Getter
   .get(function () {

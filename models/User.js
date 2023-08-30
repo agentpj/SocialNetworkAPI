@@ -1,10 +1,10 @@
 const { Schema, model } = require('mongoose');
 const Thought = require('./Thought');
 
-var validateEmail = function(email) {
-  var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-  return re.test(email)
-};
+// var validateEmail = function(email) {
+//   var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+//   return re.test(email)
+// };
 
 // Schema to create User model
 // need to validate the email above
@@ -15,14 +15,14 @@ const userSchema = new Schema(
       required: true,
       trim: true,
       unique: true,
-      required: 'Email address is required',
-      validate: [validateEmail, 'Please fill a valid email address'],
-      // match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
     },
     email: {
       type: String,
       required: true,
       unique: true,
+      required: 'Email address is required',
+      //validate: [validateEmail, 'Please fill a valid email address'],
+      match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
     },
     // thoughts is an array
     thoughts: [
